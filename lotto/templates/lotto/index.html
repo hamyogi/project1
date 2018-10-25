@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+   </head>
+<body>
+ {% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<div class="page-header">
+ <h1>My Lotto Page</h1>
+</div>
+{% for lotto in lottos %}
+<div class="container lotto">
+ <h2>{{ lotto.name }}</h2>
+ <p>{{ lotto.update_date }}</p>
+ <p>{{ lotto.lottos }}</p>
+</div>
+{% endfor %}
+
+<div id="map" style="width:500px;height:400px;"></div>
+<script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=7219f9dea5329a856cd87df9d3661fd7"></script>
+<script>
+var mapContainer = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+var mapOptions = { //지도를 생성할 때 필요한 기본 옵션
+	center: new daum.maps.LatLng({{location.lat}}, {{location.lng}}), //지도의 중심좌표.
+	level: 3 //지도의 레벨(확대, 축소 정도)
+};
+
+var map = new daum.maps.Map(mapContainer, mapOptions); //지도 생성 및 객체 리턴
+
+var markerPosition  = new daum.maps.LatLng({{location.lat}}, {{location.lng}});
+
+// 마커를 생성합니다
+var marker = new daum.maps.Marker({
+    position: markerPosition
+});
+
+// 마커가 지도 위에 표시되도록 설정합니다
+marker.setMap(map);
+
+
+</script>
+
+</body>
+</html>
