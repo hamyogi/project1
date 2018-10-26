@@ -12,11 +12,20 @@
 </div>
 {% for lotto in lottos %}
 <div class="container lotto">
- <h2>{{ lotto.name }}</h2>
- <p>{{ lotto.update_date }}</p>
+ <h2>
+     <a href="detail?lotto_num={{ lotto.id }}">
+     {{ lotto.name }}
+    </a>
+ </h2>
+ <p>
+     <a href="detail/{{lotto.id}}">
+     {{ lotto.update_date }}
+         </a>
+ </p>
  <p>{{ lotto.lottos }}</p>
 </div>
 {% endfor %}
+
 
 <div id="map" style="width:500px;height:400px;"></div>
 <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=7219f9dea5329a856cd87df9d3661fd7"></script>

@@ -29,3 +29,10 @@ class Location(models.Model):
     lat = models.FloatField()
     lng = models.FloatField()
     name = models.CharField(max_length=30)
+
+
+class Member(models.Model):
+    id = models.CharField(max_length=20,
+                          primary_key=True)
+    password = models.CharField(max_length=20)
+    name = models.CharField(max_length=10)

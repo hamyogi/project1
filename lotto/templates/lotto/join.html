@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입페이지</title>
+</head>
+<body>
+
+<form action="" method="post">
+    {%csrf_token%}
+
+    <p>아이디 : <input type="text" name="id"></p>
+    <input type="button" value="중복확인" onclick="id_check()">
+    <p>비밀번호 : <input type="password" name="pw"></p>
+    <p>이름: <input type="text" name="name"></p>
+
+    <input type="submit">
+
+</form>
+{% load static %}
+<script src ="{% static 'js/jquery.min.js' %}"></script>
+<script>
+    function id_check(){
+            id = $('input[name=id]').val()
+            $.ajax({
+                    url: '/lotto/id_check',
+                    type: 'post',
+                    data: {'id':id},
+                    success: function(res){
+                        alert(res.msg+res.id)
+
+                    }
+
+            })
+    }
+
+</script>
+</body>
+</html>
